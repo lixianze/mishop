@@ -138,6 +138,73 @@ Route::group(['middleware' => ['adminlogin']], function () {
     //角色分配权限
     Route::get('adminstage/RoleIdentity','AdminStageController@RoleIdentity');
     Route::post('adminstage/RoleIdentityAdd','AdminStageController@RoleIdentityAdd');
+    Route::post('adminstage/RoleIdentityAdd','AdminStageController@RoleIdentityAdd');
+
+    //商品管理
+    Route::get('adminstage/Good','AdminStageController@Good');
+    Route::post('adminstage/GoodAdd','AdminStageController@GoodAdd');
+    Route::post('GoodAdd','AdminStageController@GoodAdd');
+
+    //商品展示
+    Route::get('adminstage/GoodShow','AdminStageController@GoodShow');
+
+    //商品删除
+    Route::get('adminstage/GoodDelete','AdminStageController@GoodDelete');
+
+    //商品修改
+    Route::get('adminstage/GoodUpdate','AdminStageController@GoodUpdate');
+
+    Route::post('adminstage/Update','AdminStageController@Update');
+
+    //商品分类添加
+    Route::get('adminstage/classAdd','AdminStageController@classAdd');
+    Route::post('adminstage/adminClassAdd','AdminStageController@adminClassAdd');
+
+    //商品分类展示
+    Route::get('adminstage/classShow','AdminStageController@classShow');
+
+    //商品分类删除
+    Route::get('adminstage/classDelete','AdminStageController@classDelete');
+
+    //商品分类修改
+    Route::get('adminstage/classUpdate','AdminStageController@classUpdate');
+    Route::post('adminstage/adminClassUpdate','AdminStageController@adminClassUpdate');
+
+    //属性添加
+    Route::get('adminstage/adminAttr','AdminStageController@adminAttr');
+    Route::post('adminstage/adminAttrAdd','AdminStageController@adminAttrAdd');
+    Route::post('adminstage/getAttrs','AdminStageController@getAttrs');
+    Route::post('adminstage/getAttrsValue','AdminStageController@getAttrsValue');
+    Route::post('adminstage/shopAdd','AdminStageController@shopAdd');
+
+    //属性展示
+    Route::get('adminstage/adminAttrShow','AdminStageController@adminAttrShow');
+
+    //属性修改
+    Route::post('adminstage/adminAttrUpdate','AdminStageController@adminAttrUpdate');
+    Route::get('adminstage/AttrUpdate','AdminStageController@AttrUpdate');
+
+    //属性假删除
+    Route::get('adminstage/AttrDelete','AdminStageController@AttrDelete');
+
+    //添加属性值
+    Route::get('adminstage/adminValue','AdminStageController@adminValue');
+    Route::post('adminstage/adminValueAdd','AdminStageController@adminValueAdd');
+
+    //展示属性值
+    Route::get('adminstage/adminValueShow','AdminStageController@adminValueShow');
+
+    //属性值假删除
+    Route::get('adminstage/valueDelete','AdminStageController@valueDelete');
+
+    //商品属性修改
+    Route::get('adminstage/valueUpdate','AdminStageController@valueUpdate');
+    Route::post('adminstage/adminValueUpdate','AdminStageController@adminValueUpdate');
+
+    //商品分配属性
+    Route::get('adminstage/GoodDistri','AdminStageController@GoodDistri');
+    Route::post('adminstage/adminGoodDistri','AdminStageController@adminGoodDistri');
+
 });
 
 

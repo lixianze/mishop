@@ -4,8 +4,11 @@ namespace App\Services;
 use App\Models\AdminIdentity;
 use App\Models\AdminInfo;
 use App\Models\AdminMenu;
+use App\Models\GoodsSku;
 use App\Models\Identity;
 use App\Models\Resources;
+use App\Models\ShopInfo;
+use App\Models\ShopType;
 use Illuminate\Support\Facades\Session;
 use App\Models\UserRole;
 
@@ -249,6 +252,80 @@ class AdminService{
         }
         return $result;
     }
+
+    //查询分类表中分类
+    public static function TypeSelect(){
+        $data = ShopType::TypeSelect();
+        return $data;
+    }
+
+    //添加商品入库
+    public static function GoodAdd($request){
+        $good_img = '/storage/'.$request->file('good_img')->store('test');
+        $where = [
+            'good_name'=>$request['good_name'],
+            'description'=>$request['description'],
+            'good_price'=>$request['good_price'],
+            'good_img'=>$good_img,
+            'type_id'=>$request['type_id'],
+        ];
+        $num = count($request['attr_value_id']);
+        $arr = [];
+//        dd($request);
+        for($i=0;$i<$num;$i++){
+            $arr['attr_value_id'] = $request['attr_value_id'][$i];
+            $arr['goods_group'] = $request['sku_str'][$i];
+            $arr['goods_number'] = $request['sku_no'][$i];
+            $arr['goods_price'] = $request['price'][$i];
+            $arr['goods_stock'] = $request['invoutory'][$i];
+            $result = GoodsSku::GoodsAdd($arr);
+        }
+//        $term = [
+//            'attr_value_id'=>$request['attr_value_id'],
+//            'goods_group'=>$request['sku_str'],
+//            'goods_number'=>$request['sku_no'],
+//            'goods_price'=>$request['price'],
+//            'goods_stock'=>$request['invoutory'],
+//        ];
+//        dd($term);
+//        dd($arr);
+        $data = ShopInfo::GoodAdd($where);
+
+
+        return $data;
+    }
+
+    //添加货品
+    public static function GoodsAdd($request){
+
+        $where = [
+            'attr_value_id'=>$request['attr_value_id'],
+            'goods_group'=>$request['sku_str'],
+            'goods_number'=>$request['sku_no'],
+            'goods_price'=>$request['price'],
+            'goods_stock'=>$request['invoutory'],
+        ];
+
+//        return $result;
+    }
+
+    //查询商品
+    public static function GoodShow(){
+        $data = ShopInfo::GoodShow();
+        return $data;
+    }
+
+    //删除商品
+    public static function GoodDelete($id){
+        $where = [
+            'good_status' => 0,
+        ];
+        $result = ShopInfo::GoodDelete($id,$where);
+        return $result;
+    }
+
+
+
 }
 
 
